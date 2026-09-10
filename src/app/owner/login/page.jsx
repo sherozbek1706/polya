@@ -1,8 +1,12 @@
 "use client"
 import React, { useState } from "react";
-import Link from "next/link"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import api from "@/lib/axios";
 
 const Login = () => {
+  const router = useRouter();
+
   // Login uchun state-lar
   const [formData, setFormData] = useState({
     phone: "",
@@ -28,26 +32,21 @@ const Login = () => {
     setError(null);
 
     try {
-      // Backend api so'rovi (misol tariqasida fetch)
-      const response = await fetch("/owner/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Telefon raqam yoki parol noto‘g‘ri!");
-      }
+      const data = await api.post("/auth/login", formData);
 
       console.log("Muvaffaqiyatli kirildi:", data);
-      // Bu yerda tokenni saqlash yoki sahifani yo'naltirish mumkin (masalan: navigate("/dashboard"))
-      alert("Xush kelibsiz!");
+      
+      // Tokenni localStorage ga saqlash
+      if (data && data.token) {
+        localStorage.setItem("token", data.token);
+      }
+      
+      alert("Tizimga muvaffaqiyatli kirdingiz! Xush kelibsiz!");
+      router.push("/owner/dashboard");
     } catch (err) {
-      setError(err.message || "Xatolik yuz berdi. Qaytadan urinib ko'ring.");
+      const errorMessage = err.response?.data?.error || err.response?.data?.message || "Telefon raqam yoki parol noto‘g‘ri!";
+      setError(errorMessage);
+      alert(errorMessage); // Xatolikni alert orqali ham chiqarish
     } finally {
       setLoading(false);
     }

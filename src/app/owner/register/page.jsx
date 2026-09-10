@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import  Link  from "next/link";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import api from "@/lib/axios";
 
 const Register = () => {
+  const router = useRouter();
+
   // Formalar uchun state-lar (role har doim "OWNER")
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +16,7 @@ const Register = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // Input qiymatlarini yangilash
   const handleChange = (e) => {
@@ -23,18 +28,26 @@ const Register = () => {
   };
 
   // Formani yuborish
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
 
-    // Backendga yuboriladigan ma'lumot: formData
-    console.log("Yuborilgan ma'lumotlar:", formData);
+    try {
+      // 4 ta qiymat (name, phone, password, role) /auth/register ga yuboriladi
+      const data = await api.post("/auth/register", formData);
 
-    // Simulyatsiya (misol uchun)
-    setTimeout(() => {
-      setLoading(false);
       alert("Muvaffaqiyatli ro'yxatdan o'tdingiz!");
-    }, 1000);
+      // axios interceptor to'g'ridan-to'g'ri datani qaytargani uchun xatolik bo'lmasa ishladi deb olamiz
+      router.push("/owner/login");
+    } catch (err) {
+      console.error("Registratsiya xatosi:", err);
+      const errorMessage = err.response?.data?.error || err.response?.data?.message || "Ro'yxatdan o'tishda xatolik yuz berdi yoki bu raqam oldin ro'yxatdan o'tgan.";
+      setError(errorMessage);
+      alert(errorMessage); // Xatolikni alert orqali ham chiqarish
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -52,6 +65,14 @@ const Register = () => {
             Mini polyangizni biz bilan oson ijaraga bering.
           </p>
         </div>
+
+        {/* Xatolik xabari chiqadigan joy */}
+        {error && (
+          <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm flex items-center gap-2">
+            <span>⚠️</span>
+            <span>{error}</span>
+          </div>
+        )}
 
         {/* Forma qismi */}
         <form onSubmit={handleSubmit} className="space-y-4">
