@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://10.31.2.47:5005/api", // Sizning Express serveringiz manzili
+  baseURL: "http://10.31.2.48:5005/api", // Sizning Express serveringiz manzili
   timeout: 10000,
 });
 
