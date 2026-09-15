@@ -123,9 +123,9 @@ const Stadiums = () => {
                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {stadium.name}
                   </h3>
-                  <p className="text-gray-500 text-sm mb-4 flex items-start line-clamp-2 min-h-[40px]">
+                  <p className="text-gray-500 text-sm mb-4 flex items-start line-clamp-2 min-h-10">
                     <svg
-                      className="w-4 h-4 mr-1.5 mt-0.5 flex-shrink-0 text-gray-400"
+                      className="w-4 h-4 mr-1.5 mt-0.5 text-gray-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

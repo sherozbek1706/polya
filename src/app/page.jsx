@@ -52,7 +52,7 @@ const Home = () => {
 
       {/* 1. HERO BANNER SECTION */}
       <div className="max-w-7xl mx-auto px-4 pt-6 pb-12">
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-800 shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden from-blue-700 via-blue-600 to-indigo-800 shadow-2xl">
           {/* Dekorativ orqa fon elementlari */}
           <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 bg-blue-400 opacity-20 rounded-full blur-2xl"></div>
@@ -152,7 +152,7 @@ const Home = () => {
                 </h3>
                 <p className="text-gray-500 text-sm mb-4 flex items-start line-clamp-2">
                   <svg
-                    className="w-4 h-4 mr-1 mt-0.5 flex-shrink-0 text-gray-400"
+                    className="w-4 h-4 mr-1 mt-0.5 text-gray-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

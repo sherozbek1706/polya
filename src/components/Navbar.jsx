@@ -10,10 +10,10 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo qismi */}
-          <div className="flex-shrink-0 flex items-center gap-2">
+          <div className=" flex items-center gap-2">
             <Link href="/" className="flex items-center gap-2">
               <span className="text-3xl">⚽</span>
-              <span className="font-extrabold text-2xl bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="font-extrabold text-2xl from-green-600 to-blue-600 bg-clip-text text-transparent">
                 Polya.uz
               </span>
             </Link>
@@ -45,7 +45,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link
               href="/owner/login"
-              className="px-5 py-2.5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              className="px-5 py-2.5  from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-sm font-semibold rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
             >
               Polya egasi misiz?
             </Link>
@@ -114,7 +114,7 @@ const Navbar = () => {
               <Link
                 href="/owner/login"
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center px-5 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white text-base font-semibold rounded-xl shadow-md"
+                className="block w-full text-center px-5 py-3 from-green-500 to-green-600 text-white text-base font-semibold rounded-xl shadow-md"
               >
                 Polya egasi misiz?
               </Link>
